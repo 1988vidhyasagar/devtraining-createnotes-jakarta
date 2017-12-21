@@ -5,7 +5,7 @@
 	/* widget controller */
 	var c = this;
 	c.selectItem = function(idx) {
-		var id = c.data.notes[idx].sys_id;
+		var id = c.data.not[idx].sys_id;
 		console.log('Note ID: ' + id);
 		$rootScope.noteID = id;
 		$rootScope.$emit('selectNote', id);
@@ -28,7 +28,7 @@
         <roles/>
         <script><![CDATA[(function() {
 	//create an array to populate without notes
-	data.notes = [];
+	data.not = [];
 	var noteGR = new GlideRecord('x_snc_createnotes_note');
 	noteGR.addQuery('user', gs.getUser().getID());
 	noteGR.orderByDesc('sys_created_on');
@@ -40,7 +40,7 @@
 		//get the first 20 characters of the description
 		noteObj.note = noteGR.getValue('note').slice(0,20);
 		//push the populated obj into the array
-		data.notes.push(noteObj);
+		data.not.push(noteObj);
 	}
 })();
 
@@ -50,22 +50,22 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-12-20 03:12:57</sys_created_on>
         <sys_id>dc52c30b4f8b8300c00f34a18110c72e</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>Notes List</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_dc52c30b4f8b8300c00f34a18110c72e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-12-20 06:07:01</sys_updated_on>
+        <sys_updated_on>2017-12-21 04:54:11</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default">
   <div class="panel-heading clearfix">
     <h3 class="panel-title pull-left">
-      ${Notes}
+     Notes
     </h3>
   </div>
   <div class="list-group">
-    <a class="list-group-item" ng-click="c.selectItem($index)" ng-repeat="note in data.notes">
+    <a class="list-group-item" ng-click="c.selectItem($index)" ng-repeat="note in data.not">
       <h4 class="list-group-item-heading">
         {{note.title}}
       </h4>
